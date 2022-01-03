@@ -134,9 +134,16 @@ def build_html_page(books, year, month, style, instagram, show_ig_handle):
 
 def generate_screenshots(year, month, instagram):
     options = webdriver.ChromeOptions()
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('excludeSwitches', ['enable-automation'])
     options.add_experimental_option('useAutomationExtension', False)
-    driver = webdriver.Chrome(options=options)
+
+    if os.environ.get('HEROKU'):
+        options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--no-sandbox")
+        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
+    else:
+        driver = webdriver.Chrome(options=options)
     driver.get((Path.cwd() / f'wrap-ups/{instagram}-{year}-{month}.html').as_posix())
     driver.fullscreen_window()
     time.sleep(2)
