@@ -20,9 +20,9 @@ function submit () {
                 anchor.click();
             });
             
-            const h4 = document.createElement('h4');
-            h4.appendChild(document.createTextNode('Download is starting...'));
-            document.body.appendChild(h4);
+            const h5 = document.createElement('h5');
+            h5.appendChild(document.createTextNode('Download is starting...'));
+            document.body.appendChild(h5);
         })
         .catch(function (error) {
             console.log(error);
