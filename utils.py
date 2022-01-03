@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup, SoupStrainer
 from selenium import webdriver
 
-from .book import Book
+from book import Book
 
 reviews_selector = SoupStrainer('tr', {'class': 'bookalike review'})
 

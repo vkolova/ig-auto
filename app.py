@@ -6,7 +6,7 @@ from flask import Flask, session, request
 app = Flask(__name__)
 app.secret_key = 'malysh'
 
-from .utils import (
+from utils import (
     build_html_page,
     parse_monthly_books,
     build_gr_read_shelf_url,
