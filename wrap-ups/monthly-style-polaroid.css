@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Monalisa';
-    src: url('fonts/Monalisa.ttf');
+    src: url('../static/fonts/Monalisa.ttf');
 }
 
 @font-face {
     font-family: 'Catamaran';
-    src: url('fonts/Catamaran-Regular.ttf');
+    src: url('../static/fonts/Catamaran-Regular.ttf');
 }
 
 *, :after, :before {

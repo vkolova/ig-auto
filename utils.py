@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup, SoupStrainer
 from selenium import webdriver
 
-if os.environ['HEROKU']:
+if os.environ.get('HEROKU'):
     from book import Book
 else:
     from .book import Book
@@ -68,7 +68,7 @@ def divide_chunks(l, n):
         yield l[i:i + n]
 
 
-def build_elegant_style_html(fd, books, month, instagram):
+def build_elegant_style_html(fd, books, month, instagram, show_ig_handle):
     month_name = datetime.date(2000, month, 1).strftime('%B')
     fd.write(f"""<!DOCTYPE html>
         <html lang="en">
@@ -96,7 +96,7 @@ def build_elegant_style_html(fd, books, month, instagram):
     fd.write("""</body>\n</html>""")
 
 
-def build_polaroid_style_html(fd, books, month, instagram):
+def build_polaroid_style_html(fd, books, month, instagram, show_ig_handle):
     month_name = datetime.date(2000, month, 1).strftime('%B')
     fd.write(f"""<!DOCTYPE html>
         <html lang="en">
@@ -118,7 +118,7 @@ def build_polaroid_style_html(fd, books, month, instagram):
         for book in chunk:
             fd.write(book.polaroid())
             fd.write('\n')
-        fd.write(f'<div class="footer"><div class="ig">{instagram}</div></div>')
+        show_ig_handle and fd.write(f'<div class="footer"><div class="ig">@{instagram}</div></div>')
         fd.write('</div>\n')
     fd.write("""</body>\n</html>""")
 
@@ -128,9 +128,9 @@ STYLES_METHOD = {
     'polaroid': build_polaroid_style_html
 }
 
-def build_html_page(books, year, month, style, instagram):
+def build_html_page(books, year, month, style, instagram, show_ig_handle):
     with open(f'wrap-ups/{instagram}-{year}-{month}.html', 'w', encoding='utf-8') as fd:
-        STYLES_METHOD[style](fd, books, month, instagram)
+        STYLES_METHOD[style](fd, books, month, instagram, show_ig_handle)
 
 def generate_screenshots(year, month, instagram):
     options = webdriver.ChromeOptions()
@@ -149,6 +149,7 @@ def generate_screenshots(year, month, instagram):
         file_name = f'{instagram}-{year}-{month}-{count}.png'
         page.screenshot(file_name)
         shutil.move(file_name, f'downloads/{file_name}')
-        results.append(file_name)
+        results.append(f'downloads/{file_name}')
     driver.quit()
+
     return results
