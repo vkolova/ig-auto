@@ -1,4 +1,4 @@
-
+import os
 import time
 import datetime
 import shutil
@@ -9,7 +9,10 @@ import requests
 from bs4 import BeautifulSoup, SoupStrainer
 from selenium import webdriver
 
-from book import Book
+if os.environ['HEROKU']:
+    from book import Book
+else:
+    from .book import Book
 
 reviews_selector = SoupStrainer('tr', {'class': 'bookalike review'})
 

@@ -6,12 +6,20 @@ from flask import Flask, session, request
 app = Flask(__name__)
 app.secret_key = 'malysh'
 
-from utils import (
-    build_html_page,
-    parse_monthly_books,
-    build_gr_read_shelf_url,
-    generate_screenshots
-)
+if os.environ['HEROKU']:
+    from utils import (
+        build_html_page,
+        parse_monthly_books,
+        build_gr_read_shelf_url,
+        generate_screenshots
+    )
+else:
+    from .utils import (
+        build_html_page,
+        parse_monthly_books,
+        build_gr_read_shelf_url,
+        generate_screenshots
+    )
 
 @app.route('/')
 def home():
