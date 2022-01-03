@@ -1,1 +1,1 @@
-gunicorn server:app --bind 0.0.0.0:1337 --worker-class sanic.worker.GunicornWorker
+web: gunicorn server:app --port $PORT --bind 0.0.0.0 --worker-class sanic.worker.GunicornWorker
