@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='article.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='monthly-wrap-up.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<article class="monthly-wrap-up page">
+    <h2>monthly wrap up</h2>
+
+    <br>
+
+    <div class="styles">
+        <div class="style selected">
+            <div class="thumb">
+                <img src="{{ url_for('static', filename='images/elegant-0.png') }}">
+                <img src="{{ url_for('static', filename='images/elegant-1.png') }}">
+            </div>
+            <div class="title">elegant</div>
+        </div>
+        <div class="style">
+            <div class="thumb">
+                <img src="{{ url_for('static', filename='images/polaroid-0.png') }}">
+                <img src="{{ url_for('static', filename='images/polaroid-1.png') }}">
+            </div>
+            <div class="title">polaroid</div>
+        </div>
+    </div>
+</article>
+
+{% endblock %}

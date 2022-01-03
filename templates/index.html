@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="services">
+    <a class="service" href="{{ url_for('monthly_wrap_up') }}">monthly wrap up</a>
+</div>
+{% endblock %}

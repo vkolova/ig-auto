@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Script&family=Playfair+Display&family=Ubuntu&display=swap');
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+    /* background-color: #f5f3f1; */
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ul, .page {
+    height: 1080px;
+    aspect-ratio: 4 / 5;
+
+    margin: 0;
+    padding: 75px 50px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #fff;
+    /* border: 1px solid silver; */
+    /* box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.07); */
+}
+
+.page.main {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.page.main .month {
+    font-size: 128px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    letter-spacing: 15px;
+}
+
+.page.main .wrap-up {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 25px;
+    text-transform: uppercase;
+}
+
+li {
+    padding: 10px 0;
+    list-style-type: none;
+    display: flex;
+}
+
+li .data {
+    margin-left: 25px;
+}
+
+li .data .title {
+    color: black;
+    font-size: 28px;
+    font-family: 'Playfair Display', serif;
+}
+
+li .data .series {
+    color: rgba(0, 0, 0, 0.7);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+li .data .authors {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+}
+
+li .data .authors .author {
+    margin-left: 5px;
+    color: rgba(0, 0, 0, 0.75);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+}
+
+li .tags {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+li .tags .tag {
+    margin-left: 5px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.75);
+    border-bottom: 2px solid #be6574;
+}
+
+img {
+    height: auto;
+    max-width: 105px;
+    min-width: 105px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.07);
+}
+
+.rating {
+    margin-top: 10px;
+    color: #c0923d;
+    font-size: 22px;
+}

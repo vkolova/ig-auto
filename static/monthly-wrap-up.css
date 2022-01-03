@@ -1,0 +1,51 @@
+.styles {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.style .title {
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    font-size: 12px;
+    letter-spacing: 3px;
+    opacity: 0.5;
+}
+
+
+.thumb {
+    height: 150px;
+
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.thumb img {
+    height: 100%;
+    width: auto;
+}
+
+
+.style.selected .thumb {
+    border: 2px solid darkred;
+}
+
+.style.selected .title {
+    opacity: 1;
+}
