@@ -1,1 +1,1 @@
-web: sanic server.app
+web: gunicorn -w 2 server:app
