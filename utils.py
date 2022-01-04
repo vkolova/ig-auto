@@ -136,7 +136,6 @@ def generate_screenshots(year, month, instagram):
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-automation'])
     options.add_experimental_option('useAutomationExtension', False)
-    options.add_argument("window-size=1920x1080")
 
     if os.environ.get('HEROKU'):
         options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
@@ -147,6 +146,7 @@ def generate_screenshots(year, month, instagram):
     else:
         driver = webdriver.Chrome(options=options)
     driver.get((Path.cwd() / f'wrap-ups/{instagram}-{year}-{month}.html').as_posix())
+    driver.set_window_size(1920, 1080)
     driver.fullscreen_window()
     time.sleep(2)
 
