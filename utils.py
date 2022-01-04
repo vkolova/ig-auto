@@ -146,7 +146,7 @@ def generate_screenshots(path, year, month, instagram):
     else:
         driver = webdriver.Chrome(options=options)
 
-    html_file_location = os.path.join(path, 'wrap-ups', f'wrap-ups/{instagram}-{year}-{month}.html')
+    html_file_location = os.path.join(path, 'wrap-ups', f'{instagram}-{year}-{month}.html')
     print(f'\n\n\n{html_file_location}\n\n\n')
 
     driver.get(html_file_location)
