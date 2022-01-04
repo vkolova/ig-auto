@@ -56,7 +56,7 @@ def monthly_wrap_up():
 def generate_monthly_wrap_up():
     data = request.json
 
-    print(f'\n\n\n\n{data}, {session["user"]}\n\n\n\n')
+    print(f'\n\n\n\nDEBUG: {data}, {session["user"]}\n\n\n\n')
 
     year = int(data.get('year', '2022'))
     month = int(data.get('month', 1))
@@ -68,7 +68,7 @@ def generate_monthly_wrap_up():
         build_gr_read_shelf_url(gr), year, month, data.get('noLowRatings', False)
     )
 
-    print(f"\n\n\n\n{books}\n\n\n")
+    print(f"\n\n\n\nDEBUG: {books}\n\n\n")
 
     build_html_page(
         books,

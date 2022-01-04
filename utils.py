@@ -17,7 +17,7 @@ else:
 reviews_selector = SoupStrainer('tr', {'class': 'bookalike review'})
 
 def build_gr_read_shelf_url(user_id):
-    return f'https://www.goodreads.com/review/list/{user_id}?shelf=read&print=true&per_page=200'
+    return f'https://www.goodreads.com/review/list/{user_id}?shelf=read&print=true&per_page=200&sort=date_read'
 
 def parse_monthly_books(url, year, month, filter_low_ratings = False):
     previous_year = str(int(year) - 1)
