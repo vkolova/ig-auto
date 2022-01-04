@@ -149,6 +149,9 @@ def generate_screenshots(path, year, month, instagram):
     html_file_location = os.path.join(path, 'wrap-ups', f'{instagram}-{year}-{month}.html')
     print(f'\n\n\n{html_file_location}\n\n\n')
 
+    with open(html_file_location, 'r') as fd:
+        print(fd.read(), '\n\n\n\n')
+
     driver.get(html_file_location)
     driver.set_window_size(1920, 1080)
     driver.fullscreen_window()

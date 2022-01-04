@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='article.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='monthly-wrap-up.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{{ url_for('static', filename='monthly-wrap-up.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+<article>
+    <h2>currently reading</h2>
+
+    <br>
+    <h4>> style</h4>
+    <div class="styles">
+        <label class="style">
+            <input type="radio" name="style" value="elegant" checked />
+            <div class="thumb">
+                <img src="{{ url_for('static', filename='images/elegant-0.png') }}">
+                <img src="{{ url_for('static', filename='images/elegant-1.png') }}">
+            </div>
+            <span>elegant</span>
+        </label>
+
+        <label class="style">
+            <input type="radio" name="style" value="polaroid" />
+            <div class="thumb">
+                <img src="{{ url_for('static', filename='images/polaroid-0.png') }}">
+                <img src="{{ url_for('static', filename='images/polaroid-1.png') }}">
+            </div>
+            <span>polaroid</span>
+        </label>
+    </div>
+
+    <div id="submit" class="submit-btn" style="margin-left: 45%;">generate >>></div>
+
+</article>
+
+<div id="loading" style="display: none;">
+    <br><br><br><br><br>
+    <h4>> working... please wait</h4>
+    <br>
+    <div class="lds-grid">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+{% endblock %}

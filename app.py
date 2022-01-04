@@ -78,3 +78,10 @@ def generate_monthly_wrap_up():
 def download(filename):
     full_path = os.path.join(app.root_path, 'downloads')
     return flask.send_from_directory(full_path, filename)
+
+
+@app.route('/currently-reading')
+def currently_reading():
+    if not session:
+        flask.redirect(flask.url_for('setup'))
+    return flask.render_template('currently-reading.html', session=session['user'])
