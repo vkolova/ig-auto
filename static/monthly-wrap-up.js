@@ -1,3 +1,9 @@
+Object.defineProperty(Array.prototype, 'last', {
+    get : function() {
+        return this[this.length - 1];
+    }
+});
+
 function submit () {
     const style = document.querySelector('input[name="style"]:checked').value;
     const showIGhandle = document.querySelector('input[name="ig-handle"]').checked;
@@ -16,17 +22,30 @@ function submit () {
         month
     })
         .then(function ({ data }) {
+            const container = document.createElement('article');
+            container.classList = 'download-links';
+            const h4 = document.createElement('h4');
+            h4.appendChild(document.createTextNode('Download links'));
+
+            container.appendChild(document.createElement('br'));
+            container.appendChild(document.createElement('br'));
+            container.appendChild(document.createElement('br'));
+
+            container.appendChild(h4);
+
+            container.appendChild(document.createElement('br'));
+
+
             data.forEach(url => {
                 const anchor = document.createElement('a');
                 anchor.href = url;
                 anchor.download = true;
-                document.body.appendChild(anchor);
-                anchor.click();
+                anchor.appendChild(document.createTextNode(url.split('/').last));
+                container.appendChild(anchor);
+                container.appendChild(document.createElement('br'));
+                container.appendChild(document.createElement('br'));
             });
-            
-            const h5 = document.createElement('h5');
-            h5.appendChild(document.createTextNode('Download is starting...'));
-            document.body.appendChild(h5);
+            document.body.appendChild(container);
         })
         .catch(function (error) {
             console.log(error);

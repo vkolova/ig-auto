@@ -115,3 +115,20 @@ option {
     letter-spacing: 3px;
     font-size: 12px;
 }
+
+.download-links {
+    width: 100%;
+    padding: 0 15%;
+
+    text-align: center;
+}
+
+#loading h4,
+.download-links h4 {
+    margin: 0;
+}
+
+.download-links a {
+    margin: 5px;
+    border-bottom: 2px solid #ecd6d9;
+}

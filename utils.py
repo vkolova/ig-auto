@@ -136,22 +136,17 @@ def generate_screenshots(path, year, month, instagram):
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-automation'])
     options.add_experimental_option('useAutomationExtension', False)
+    options.add_argument('--headless')
 
     if os.environ.get('HEROKU'):
         options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--headless")
-        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('--no-sandbox')
+        driver = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), options=options)
     else:
         driver = webdriver.Chrome(options=options)
 
     html_file_location = os.path.join(path, 'wrap-ups', f'{instagram}-{year}-{month}.html')
-    # print(f'\n\n\n{html_file_location}\n\n\n')
-
-    # with open(html_file_location, 'r') as fd:
-    #     print(fd.read(), '\n\n\n\n')
-
     driver.get('file:///' + html_file_location)
     driver.set_window_size(1920, 1080)
     driver.fullscreen_window()
