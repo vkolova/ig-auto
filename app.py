@@ -71,7 +71,7 @@ def generate_monthly_wrap_up():
         ig,
         data.get('showIGhandle', False)
     )
-    return flask.jsonify(generate_screenshots(year, month, ig))
+    return flask.jsonify(generate_screenshots(app.root_path, year, month, ig))
 
 
 @app.route('/downloads/<path:filename>', methods=['GET'])

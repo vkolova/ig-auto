@@ -132,7 +132,7 @@ def build_html_page(books, year, month, style, instagram, show_ig_handle):
     with open(f'wrap-ups/{instagram}-{year}-{month}.html', 'w', encoding='utf-8') as fd:
         STYLES_METHOD[style](fd, books, month, instagram, show_ig_handle)
 
-def generate_screenshots(year, month, instagram):
+def generate_screenshots(path, year, month, instagram):
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-automation'])
     options.add_experimental_option('useAutomationExtension', False)
@@ -145,7 +145,8 @@ def generate_screenshots(year, month, instagram):
         driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
     else:
         driver = webdriver.Chrome(options=options)
-    driver.get((Path.cwd() / f'wrap-ups/{instagram}-{year}-{month}.html').as_posix())
+
+    driver.get(os.path.join(path, 'wrap-ups', f'wrap-ups/{instagram}-{year}-{month}.html'))
     driver.set_window_size(1920, 1080)
     driver.fullscreen_window()
     time.sleep(2)
