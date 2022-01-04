@@ -55,16 +55,23 @@ def monthly_wrap_up():
 @app.route('/generate-monthly-wrap-up', methods=['get', 'post'])
 def generate_monthly_wrap_up():
     data = request.json
+
+    print(f'\n\n\n\n{data}, {session["user"]}\n\n\n\n')
+
     year = int(data.get('year', '2022'))
     month = int(data.get('month', 1))
 
     gr = session['user']['goodreads']
     ig = session['user']['instagram']
 
+    books = parse_monthly_books(
+        build_gr_read_shelf_url(gr), year, month, data.get('noLowRatings', False)
+    )
+
+    print(f"\n\n\n\n{books}\n\n\n")
+
     build_html_page(
-        parse_monthly_books(
-            build_gr_read_shelf_url(gr), year, month, data.get('noLowRatings', False)
-        ),
+        books,
         year,
         month,
         data.get('style', 'elegant'),
