@@ -145,7 +145,8 @@ def generate_screenshots(year, month, instagram):
         driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
     else:
         driver = webdriver.Chrome(options=options)
-    driver.get((Path.cwd() / f'wrap-ups/{instagram}-{year}-{month}.html').as_posix())
+    print('\n\n\n\n', (Path.cwd() / f'wrap-ups/{instagram}-{year}-{month}.html').as_posix())
+    driver.get((Path.cwd() / f'wrap-ups/{instagram}-{year}-{month}.html').as_posix(), '\n\n\n\n')
     driver.set_window_size(1920, 1080)
     driver.fullscreen_window()
     time.sleep(2)
