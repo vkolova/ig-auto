@@ -1,7 +1,9 @@
 function submit () {
     const style = document.querySelector('input[name="style"]:checked').value;
     const showIGhandle = document.querySelector('input[name="ig-handle"]').checked;
-    const noLowRatings = document.querySelector('input[name="no-low-rating"]').checked
+    const noLowRatings = document.querySelector('input[name="no-low-rating"]').checked;
+    const year = document.querySelector('#year').value;
+    const month = document.querySelector('#month').value;
 
     document.querySelector('article').style.display = 'none';
     document.querySelector('#loading').style.display = 'block';
@@ -9,7 +11,9 @@ function submit () {
     axios.post('/generate-monthly-wrap-up', {
         style,
         showIGhandle,
-        noLowRatings
+        noLowRatings,
+        year,
+        month
     })
         .then(function ({ data }) {
             data.forEach(url => {

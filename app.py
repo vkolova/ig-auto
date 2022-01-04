@@ -54,15 +54,24 @@ def monthly_wrap_up():
 
 @app.route('/generate-monthly-wrap-up', methods=['get', 'post'])
 def generate_monthly_wrap_up():
+    data = request.json
+    year = int(data.get('year', '2022'))
+    month = int(data.get('month', 1))
+
+    gr = session['user']['goodreads']
+    ig = session['user']['instagram']
+
     build_html_page(
-        parse_monthly_books(build_gr_read_shelf_url(session['user']['goodreads']), 2022, 1, request.json.get('noLowRatings', False)),
-        2022,
-        1,
-        request.json.get('style', 'elegant'),
-        session['user']['instagram'],
-        request.json.get('showIGhandle', False)
+        parse_monthly_books(
+            build_gr_read_shelf_url(gr), year, month, data.get('noLowRatings', False)
+        ),
+        year,
+        month,
+        data.get('style', 'elegant'),
+        ig,
+        data.get('showIGhandle', False)
     )
-    return flask.jsonify(generate_screenshots(2022, 1, session['user']['instagram']))
+    return flask.jsonify(generate_screenshots(year, month, ig))
 
 
 @app.route('/downloads/<path:filename>', methods=['GET'])

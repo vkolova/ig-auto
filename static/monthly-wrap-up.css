@@ -1,3 +1,8 @@
+.dates {
+    width: 100%;
+    padding: 0 15%;
+}
+
 .styles {
     width: 100%;
     padding: 0 15%;
@@ -31,7 +36,7 @@ label > input[type="radio"] {
 }
 
 label > input:checked + .thumb {
-    border: 2px solid darkred;
+    border: 2px solid #9c929b;
     opacity: 1;
 }
 
@@ -82,4 +87,31 @@ article h4 {
 
 h5 {
     text-align: center;
+}
+
+select {
+    padding: 5px 15px;
+    margin: 0 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background-color: rgba(216, 209, 217, 0.5);
+    border: none;
+
+    transition: ease-in-out all 0.3s;
+}
+
+select:hover {
+    color: #9d919b;
+}
+
+select:focus-visible {
+    outline: none;
+}
+
+option {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
 }

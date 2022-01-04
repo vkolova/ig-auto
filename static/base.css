@@ -19,6 +19,10 @@ html, body {
     font-family: 'Catamaran';
 }
 
+::selection {
+    background-color: rgba(156, 146, 155, 0.5);
+}
+
 .logo {
     margin-top: 50px;
     width: 100%;
@@ -46,7 +50,7 @@ a {
     text-transform: uppercase;
     letter-spacing: 15px;
 
-    color: #d9d4da;
+    color: #5d6675;
 }
 
 .user-profile {
