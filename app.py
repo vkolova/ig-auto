@@ -60,7 +60,7 @@ def monthly_wrap_up():
 def generate_monthly_wrap_up():
     data = request.json
 
-    print(f'\n\n\n\nDEBUG: {data}, {session["user"]}\n\n\n\n')
+    print(f'\n\n\n\n[DEBUG]: {data}, {session["user"]}\n\n\n\n')
 
     year = int(data.get('year', '2022'))
     month = int(data.get('month', 1))
