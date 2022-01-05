@@ -1,10 +1,12 @@
 import os
+from datetime import timedelta
 
 import flask
 from flask import Flask, session, request
 
 app = Flask(__name__)
 app.secret_key = 'malysh'
+app.permanent_session_lifetime = timedelta(minutes=5)
 
 if os.environ.get('HEROKU'):
     from utils import (
@@ -14,6 +16,8 @@ if os.environ.get('HEROKU'):
         generate_screenshots
     )
 else:
+    app.debug = True
+
     from .utils import (
         build_html_page,
         parse_monthly_books,
