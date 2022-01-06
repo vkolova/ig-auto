@@ -1,0 +1,34 @@
+.phone {
+    width: 350px;
+    aspect-ratio: 1 / 1.95;
+
+    border: 10px solid #000;
+    border-radius: 50px;
+}
+
+.screen {
+    height: 100%;
+    width: 100%;
+
+    background-color: #000;
+
+    overflow: hidden;
+    border-radius: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen-content {
+    height: auto;
+    width: 100%;
+}
+
+.ratio-4x5 {
+    aspect-ratio: 4 / 5;
+}
+
+.ratio-9x16 {
+    aspect-ratio: 9 / 16;
+}

@@ -1,0 +1,24 @@
+
+@font-face {
+    font-family: 'Sinthya';
+    src: url('./fonts/Sinthya.ttf');
+}
+
+// @font-face {
+//     font-family: 'Catamaran';
+//     src: url('./fonts/Catamaran-Regular.ttf');
+// }
+
+@font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./fonts/Catamaran-Regular.ttf') format('ttf');
+  }
+  
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

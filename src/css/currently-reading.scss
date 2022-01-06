@@ -1,0 +1,41 @@
+.simple-layout {
+    background-color: grey;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .title {
+        z-index: 2;
+    }
+
+    .book-cover {
+        aspect-ratio: 100 / 150;
+        background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+        z-index: 1;
+    }
+
+    .cover-size-sm {
+        width: 30%;
+    }
+
+    .cover-size-md {
+        width: 50%;
+    }
+
+    .cover-size-lg {
+        width: 70%;
+    }
+
+    .credit {
+        bottom: 20px;
+        position: absolute;
+    }
+}
+
+.simple-layout.reverse {
+    flex-direction: column-reverse;
+}

@@ -132,3 +132,6 @@ dmypy.json
 wrap-ups/*.html
 downloads/
 chromedriver.exe
+
+node_modules/
+package-lock.json
