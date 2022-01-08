@@ -1,12 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: ['./src/index.jsx'],
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'static'),
         filename: 'app.js'
     },
     plugins: [
@@ -15,7 +15,7 @@ module.exports = {
             filename: 'index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: "styles.css"
+            filename: 'styles.css'
         })
     ],
     module: {
@@ -50,24 +50,20 @@ module.exports = {
     },
     devServer: {
         hot: true,
-        static : path.join(__dirname, 'public'),
+        static : path.join(__dirname, 'static'),
         compress: false,
         port: 3000,
         historyApiFallback: true,
         proxy: [
             {
-                context: ['/api'],
+                context: ['/api', '/downloads'],
                 target: 'http://localhost:5000',
                 secure: false,
                 changeOrigin: true
             }
         ],
-        // writeToDisk: true
         devMiddleware: {
             index: true,
-            // mimeTypes: { phtml: 'text/html' },
-            // publicPath: '/publicPathForDevServe',
-            // serverSideRender: true,
             writeToDisk: true
         },
     }

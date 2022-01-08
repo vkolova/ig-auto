@@ -1,5 +1,10 @@
 import React from 'react';
 
+import axios from 'axios';
+
+import Phone from './Phone';
+import Loading from './Loading';
+
 import './css/currently-reading.scss';
 
 const CurrentlyReading = ({
@@ -39,12 +44,21 @@ const CurrentlyReading = ({
         <div
             className={`book-cover cover-size-${cover.size}`}
             style={{
-                borderRadius: `${cover.borderRadius}px`,
-                backgroundImage: `url("${book.cover}")`
+                borderRadius: `${cover.borderRadius}%`,
+                backgroundImage: `url(${book.cover})`
             }}
         ></div>
 
-        {/* { credit.show && <div className='credit'>@{credit.username}</div> } */}
+        {
+            credit.show &&
+            <div
+                className='credit'
+                style={{
+                    color: credit.color,
+                    textTransform: credit.transform
+                }}
+            >{`@${localStorage.getItem('instagram')}`}</div>
+        }
     </div>;
 }
 
@@ -65,8 +79,7 @@ const POST_BACKGROUND_IMAGES = {
     'pink stains ': 'https://i.pinimg.com/564x/f7/ff/6c/f7ff6c6fe5a26909e732c48df897f5f9.jpg',
     'blue waves': 'https://i.pinimg.com/564x/27/db/da/27dbdaea4470b9f9cb6f95c192f4992a.jpg',
     'pink waves': 'https://i.pinimg.com/564x/e9/72/0f/e9720f29fda3b357ff4edab2a5da31c2.jpg',
-    'gray waves': 'https://i.pinimg.com/564x/d0/00/07/d00007ab011662b8e4e6b7cb99520833.jpg',
-    'poster': 'https://i.pinimg.com/564x/cf/23/06/cf2306bc287868b5f246ebcf0b6d534b.jpg'
+    'gray waves': 'https://i.pinimg.com/564x/d0/00/07/d00007ab011662b8e4e6b7cb99520833.jpg'
 };
 
 const TITLE_FONTS = [
@@ -101,7 +114,7 @@ const COVER_SIZES = {
     lg: 'large'
 };
 
-const COVER_BORDER_RADIUSES = ['0', '10', '20'];
+const COVER_BORDER_RADIUSES = ['0', '5', '10'];
 
 class Settings extends React.Component {
     setPostAspectRatio = e => {
@@ -162,6 +175,24 @@ class Settings extends React.Component {
         this.props.editor.setState({ options: currentOptions });
     }
 
+    setCreditShow = e => {
+        const currentOptions = this.props.settings;
+        currentOptions.credit.show = e.target.checked;
+        this.props.editor.setState({ options: currentOptions });
+    }
+
+    setCreditColor = e => {
+        const currentOptions = this.props.settings;
+        currentOptions.credit.color = e.target.value;
+        this.props.editor.setState({ options: currentOptions });
+    }
+
+    setCreditTransform = e => {
+        const currentOptions = this.props.settings;
+        currentOptions.credit.transform = e.target.value;
+        this.props.editor.setState({ options: currentOptions });
+    }
+
     render () {
         const { settings } = this.props;
         const {
@@ -172,7 +203,7 @@ class Settings extends React.Component {
         } = settings;
 
         return <div className='cr---settings'>
-            <h2>Settings</h2>
+            <h2>{`> currently reading`}</h2>
 
             <div className='section'>
                 <h4>post</h4>
@@ -383,6 +414,64 @@ class Settings extends React.Component {
                     }
                 </div>
             </div>
+            
+            <div className='section'>
+                <h4>credit</h4>
+
+                <div className='row'>
+                    <h6>{'show >'}</h6>
+                        <label key={`credit--show`}>
+                            <input
+                                type='checkbox'
+                                name={'credit--show'}
+                                checked={credit.show}
+                                onChange={this.setCreditShow}
+                            />
+                            <span>show Instagram</span>
+                        </label>
+                </div>
+
+                <br />
+
+                <div className='row'>
+                    <h6>{'color >'}</h6>
+                    {
+                        Object.entries(TITLE_COLORS).map(([name, color]) =>
+                            <label key={`credit--color--${color}`}>
+                                <input
+                                    type='radio'
+                                    name={'credit--color'}
+                                    value={color}
+                                    checked={color === credit.color}
+                                    onChange={this.setCreditColor}
+                                />
+                                <span>{name}</span>
+                            </label>
+                        )
+                    }
+                </div>
+                
+                <br />
+
+                <div className='row'>
+                    <h6>{'transform >'}</h6>
+                    {
+                        TEXT_TRANSFORMS.map(tt =>
+                            <label key={`credit--text-transform--${tt}`}>
+                                <input
+                                    type='radio'
+                                    name={'credit--text-transform'}
+                                    value={tt}
+                                    checked={tt === credit.transform}
+                                    onChange={this.setCreditTransform}
+                                />
+                                <span style={{ textTransform: tt }}>{tt}</span>
+                            </label>
+                        )
+                    }
+                </div>     
+
+            </div>
 
             <br />
 
@@ -391,4 +480,94 @@ class Settings extends React.Component {
     }
 }
 
-export { CurrentlyReading, Settings };
+const DEFAULT_SETTINGS = {
+    simple: {
+        post: {
+            aspectRatio: '9x16',
+            background: {
+                type: 'color',
+                value: 'white'
+            }
+        },
+        title: {
+            font: 'Sinthya',
+            color: 'black',
+            transform: 'lowercase',
+            size: 'md'
+        },
+        cover: {
+            size: 'md',
+            borderRadius: '5'
+        },
+        credit: {
+            show: true,
+            color: 'black',
+            transform: 'lowercase'
+        },
+        progress: {
+            show: true
+        }
+    }
+};
+
+class Editor extends React.Component {
+    state = {
+        loading: true,
+        book: null,
+        layout: 'simple',
+        options: DEFAULT_SETTINGS.simple
+    }
+
+    image = React.createRef();
+
+    componentDidMount () {
+        axios.get('/api/currently-reading')
+            .then(({ data }) => this.setState({ loading: false, book: data }))
+            .catch(() => this.setState({ error: true }))
+    }
+
+    download = () => {
+        console.log(this.image.current.outerHTML)
+        this.setState({ loading: true });
+        axios.post('/api/currently-reading', { html: this.image.current.outerHTML })
+            .then(({ data }) => {
+                console.log(data)
+                const url = data[0];
+                const anchor = document.createElement('a');
+                anchor.href = url;
+                anchor.download = true;
+                document.body.appendChild(anchor);
+                anchor.click();
+                this.setState({ loading: false })
+            })
+            .catch(() => this.setState({ error: true }))
+    };
+
+    render () {
+        const { loading, book, options } = this.state;
+
+        return loading
+            ? <Loading/>
+            : <div className='currently-reading-editor'>
+                <Phone>
+                    <CurrentlyReading
+                        book={book}
+                        settings={options}
+                        editor={this}
+                        reference={this.image}
+                    />
+                </Phone>
+
+                <Settings
+                    settings={options}
+                    editor={this}
+                    defaultSettings={DEFAULT_SETTINGS.simple}
+                >
+                    <div className='btn btn--submit' onClick={this.download}>download</div>
+                </Settings>
+            </div>
+    }
+}
+
+export default Editor;
+

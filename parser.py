@@ -28,7 +28,7 @@ def get_book(url):
     document = BeautifulSoup(page.text, 'html.parser')
 
     seriesEl = document.find(id='bookSeries') or document.select_one('h3.Text.Text__title3.Text__italic.Text__regular.Text__subdued')
-    coverEl = document.select_one('#coverImage') or document.select_one('div.BookPage__bookCover > div > img')
+    coverEl = document.select_one('#coverImage') or document.select_one('div.BookPage__bookCover > div > div > div > div > div > div > img')
 
     return Book(
         title=(document.find(id='bookTitle') or document.select_one('h1.Text.Text__title1')).text.strip(),
@@ -38,7 +38,7 @@ def get_book(url):
             for ah
             in document.select('#bookAuthors > span > div > a') or document.select('.ContributorLinksList .ContributorLink')
         ],
-        cover=coverEl.attrs['src'] if coverEl else NO_COVER_SVG,
+        cover=coverEl.attrs['src'].split(' ')[0] if coverEl else NO_COVER_SVG,
         url=book_url,
     )
 

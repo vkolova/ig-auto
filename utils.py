@@ -164,3 +164,38 @@ def generate_screenshots(path, year, month, instagram):
     driver.quit()
 
     return results
+
+
+def take_page_screenshots(base_path, html_file, selector='.page'):
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-automation'])
+    options.add_experimental_option('useAutomationExtension', False)
+    options.add_argument('--headless')
+
+    if os.environ.get('HEROKU'):
+        options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('--no-sandbox')
+        driver = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), options=options)
+    else:
+        driver = webdriver.Chrome(options=options)
+
+    html_file_location = os.path.join(base_path, html_file)
+    driver.get('file:///' + html_file_location)
+    driver.set_window_size(1920, 1080)
+    driver.fullscreen_window()
+    time.sleep(2)
+
+    Path('downloads').mkdir(parents=True, exist_ok=True)
+
+    base_name = Path(html_file).stem
+    pages = driver.find_elements_by_css_selector(selector)
+    results = []
+    for count, page in enumerate(pages):
+        file_name = f'{base_name}-{count}.png'
+        page.screenshot(file_name)
+        shutil.move(file_name, f'downloads/{file_name}')
+        results.append(f'downloads/{file_name}')
+    driver.quit()
+
+    return results

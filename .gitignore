@@ -128,7 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-
+temp/*.html
 wrap-ups/*.html
 downloads/
 chromedriver.exe
@@ -136,3 +136,6 @@ chromedriver.exe
 node_modules/
 package-lock.json
 *.sqlite
+static/*.map
+static/*.hot-update.*
+static/*.html

@@ -1,3 +1,4 @@
+@import 'variables';
 
 @font-face {
     font-family: 'Sinthya';
@@ -21,18 +22,43 @@
     box-sizing: border-box;
 }
 
-
-$accent-color: #a0656b;
-
-
 html, body {
-    accent-color: $accent-color;
+    font-size: 15px;
     font-family: 'Catamaran';
+    accent-color: $accent-color;
 }
 
 ::selection {
     background-color: rgba(156, 146, 155, 0.5);
 }
+
+.logo {
+    width: 100%;
+    margin-top: 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        margin: 0;
+        font-family: 'Sinthya';
+        color: #2f2e3e;
+    }
+
+    .studio {
+        margin: 0;
+
+        color: #5d6675;
+        font-family: 'Catamaran';
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 15px;
+        text-transform: uppercase;
+    }
+}
+
+
 
 $slider-size: 14px;
 

@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
-    {% block header %}{% endblock %}
+	<title>𝒃𝒐𝒐𝒌𝒔𝒕𝒂𝒈𝒓𝒂𝒎 𝒔𝒕𝒖𝒅𝒊𝒐</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+	{% block header %}{% endblock %}
 </head>
 <body>
     <a class="logo" href="{{ url_for('home') }}">
       <h1>bookstagram</h1>
-      <h6>studio</h6>
+      <div class="studio">studio</div>
     </a>
 
-    {% if session %}
+    <!-- {% if session %}
       <div class="user-profile">@{{ session['instagram'] }}</div></div>
-    {% endif  %}
+    {% endif  %} -->
 
     <br>
 
     {% block content %}{% endblock %}
+
+	<div id="root"></div>
+	<script defer src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>

@@ -8,8 +8,6 @@
 }
 
 .simple-layout {
-    padding-bottom: 5%;
-
     background-position-x: center;
     background-position-y: center;
     background-size: cover;
@@ -25,9 +23,9 @@
         z-index: 2;
     }
 
-    .title.sm { font-size: 20px; }
-    .title.md { font-size: 30px; }
-    .title.lg { font-size: 50px; }
+    .title.sm { font-size: 150%; }
+    .title.md { font-size: 200%; }
+    .title.lg { font-size: 250%; }
 
     .book-cover {
         aspect-ratio: 100 / 150;
@@ -44,7 +42,7 @@
     .cover-size-lg { width: 70%; }
 
     .credit {
-        bottom: 20px;
+        bottom: 3%;
         position: absolute;
     }
 }
@@ -56,9 +54,10 @@
 
 // ---------- CONTROLLS ----------
 .section {
-    padding: 25px;
+    padding: 0 25px;
 
     h4 {
+        margin-bottom: 10px;
         text-transform: uppercase;
         letter-spacing: 7px;
     }

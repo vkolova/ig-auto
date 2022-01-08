@@ -1,0 +1,322 @@
+/*!********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/css/index-styles.scss ***!
+  \********************************************************************************************************************/
+@font-face {
+  font-family: 'Sinthya';
+  src: url(fb87ec37b5cc5d6f9add.ttf); }
+
+@font-face {
+  font-family: 'Catamaran';
+  src: url(0732146e6b92c479f6a8.ttf); }
+
+@font-face {
+  font-family: 'Monalisa';
+  src: url(c0a902233a41d78625f6.ttf); }
+
+*, :after, :before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html, body {
+  font-size: 15px;
+  font-family: 'Catamaran';
+  accent-color: #a0656b; }
+
+::selection {
+  background-color: rgba(156, 146, 155, 0.5); }
+
+.logo {
+  width: 100%;
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .logo h1 {
+    margin: 0;
+    font-family: 'Sinthya';
+    color: #2f2e3e; }
+  .logo .studio {
+    margin: 0;
+    color: #5d6675;
+    font-family: 'Catamaran';
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 15px;
+    text-transform: uppercase; }
+
+input[type='range'] {
+  appearance: none;
+  width: 300px;
+  border-radius: 3px;
+  transition: opacity 0.2s;
+  padding: 0;
+  /* WEBKIT */
+  /* MOZILLA */ }
+  input[type='range']:hover {
+    opacity: 1; }
+  input[type='range']:focus {
+    outline: 0; }
+  input[type='range']::-webkit-slider-runnable-track {
+    appearance: none;
+    background-color: #a0656b;
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 6px;
+    background: #d2d2d2; }
+  input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    height: 14px;
+    width: 14px;
+    margin-top: -4.66667px;
+    background-color: #a0656b;
+    border-radius: 100%;
+    vertical-align: middle;
+    cursor: pointer; }
+  input[type='range']::-moz-range-track {
+    appearance: none;
+    background-color: #a0656b;
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+    margin: 0;
+    padding: 0; }
+  input[type='range']::-moz-range-thumb {
+    appearance: none;
+    height: 14px;
+    width: 14px;
+    margin-top: -4.66667px;
+    background-color: #a0656b;
+    border-radius: 100%;
+    vertical-align: middle;
+    cursor: pointer; }
+
+.btn {
+  text-transform: uppercase;
+  cursor: pointer; }
+
+.btn--submit {
+  max-width: 300px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #a0656b;
+  letter-spacing: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+/*!************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/css/home.scss ***!
+  \************************************************************************************************************/
+.services {
+  width: 75%;
+  margin: 0 auto;
+  color: #2f2e3e;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .services .service {
+    padding: 10px 20px;
+    margin: 5px 0;
+    min-width: 400px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    background-color: #fff;
+    border: 2px solid #a0656b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: ease-in-out all 0.3s; }
+  .services .service:hover {
+    color: white;
+    background-color: #a0656b; }
+
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/css/phone.scss ***!
+  \*************************************************************************************************************/
+.phone {
+  width: 350px;
+  aspect-ratio: 1 / 1.95;
+  border: 10px solid #000;
+  border-radius: 50px; }
+
+.screen {
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  overflow: hidden;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.screen-content {
+  height: auto;
+  width: 100%; }
+
+.ratio-4x5 {
+  aspect-ratio: 4 / 5; }
+
+.ratio-9x16 {
+  aspect-ratio: 9 / 16; }
+
+/*!***************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/css/loading.scss ***!
+  \***************************************************************************************************************/
+.loading-wrapper {
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.lds-grid {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px; }
+
+.lds-grid div {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #9d919b;
+  animation: lds-grid 1.2s linear infinite; }
+
+.lds-grid div:nth-child(1) {
+  top: 8px;
+  left: 8px;
+  animation-delay: 0s; }
+
+.lds-grid div:nth-child(2) {
+  top: 8px;
+  left: 32px;
+  animation-delay: -0.4s; }
+
+.lds-grid div:nth-child(3) {
+  top: 8px;
+  left: 56px;
+  animation-delay: -0.8s; }
+
+.lds-grid div:nth-child(4) {
+  top: 32px;
+  left: 8px;
+  animation-delay: -0.4s; }
+
+.lds-grid div:nth-child(5) {
+  top: 32px;
+  left: 32px;
+  animation-delay: -0.8s; }
+
+.lds-grid div:nth-child(6) {
+  top: 32px;
+  left: 56px;
+  animation-delay: -1.2s; }
+
+.lds-grid div:nth-child(7) {
+  top: 56px;
+  left: 8px;
+  animation-delay: -0.8s; }
+
+.lds-grid div:nth-child(8) {
+  top: 56px;
+  left: 32px;
+  animation-delay: -1.2s; }
+
+.lds-grid div:nth-child(9) {
+  top: 56px;
+  left: 56px;
+  animation-delay: -1.6s; }
+
+@keyframes lds-grid {
+  0%, 100% {
+    opacity: 1; }
+  50% {
+    opacity: 0.5; } }
+
+.lds-text {
+  letter-spacing: 7px;
+  text-transform: uppercase; }
+
+/*!*************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/css/currently-reading.scss ***!
+  \*************************************************************************************************************************/
+.currently-reading-editor {
+  display: grid;
+  grid-gap: 100px;
+  grid-template-columns: auto 60%;
+  align-content: center;
+  justify-content: center;
+  align-items: center; }
+
+.simple-layout {
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative; }
+  .simple-layout .title {
+    margin-bottom: 5%;
+    z-index: 2; }
+  .simple-layout .title.sm {
+    font-size: 150%; }
+  .simple-layout .title.md {
+    font-size: 200%; }
+  .simple-layout .title.lg {
+    font-size: 250%; }
+  .simple-layout .book-cover {
+    aspect-ratio: 100 / 150;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+    z-index: 1; }
+  .simple-layout .cover-size-sm {
+    width: 30%; }
+  .simple-layout .cover-size-md {
+    width: 50%; }
+  .simple-layout .cover-size-lg {
+    width: 70%; }
+  .simple-layout .credit {
+    bottom: 3%;
+    position: absolute; }
+
+.simple-layout.reverse {
+  flex-direction: column-reverse; }
+
+.section {
+  padding: 0 25px; }
+  .section h4 {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 7px; }
+  .section .row {
+    padding: 0 25px;
+    display: inline-flex;
+    align-items: center; }
+    .section .row h6 {
+      margin: 0;
+      margin-right: 10px;
+      min-width: 170px;
+      text-transform: uppercase;
+      letter-spacing: 7px; }
+  .section label {
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer; }
+    .section label input[type='radio'] {
+      margin: 0 5px; }
+
+.cr---settings h2 {
+  text-transform: uppercase;
+  letter-spacing: 7px; }
+
+
+/*# sourceMappingURL=styles.css.map*/
