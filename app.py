@@ -80,32 +80,9 @@ def home():
     return flask.render_template('base.html')
 
 
-@app.route('/setup')
-def setup():
-    return flask.render_template('setup.html')
-
-
-@app.route('/setup-accounts', methods=['post'])
-def setup_accounts():
-    goodreads = request.form.get('goodreads')  # access the data inside 
-    instagram = request.form.get('instagram')
-    session['user'] = {
-        'goodreads': goodreads.split('/')[-1].split('-')[0],
-        'instagram': instagram.split('/')[-2]
-    }
-    return flask.redirect(flask.url_for('home'))
-
-
-@app.route('/monthly-wrap-up')
-def monthly_wrap_up():
-    return flask.render_template('monthly-wrap-up.html')
-
-
-@app.route('/generate-monthly-wrap-up', methods=['get', 'post'])
+@app.route('/api/generate-monthly-wrap-up', methods=['post'])
 def generate_monthly_wrap_up():
     data = request.json
-
-    print(f'\n\n\n\n[DEBUG]: {data}, {session["user"]}\n\n\n\n')
 
     year = int(data.get('year', '2022'))
     month = int(data.get('month', 1))
@@ -116,8 +93,6 @@ def generate_monthly_wrap_up():
     books = parse_monthly_books(
         build_gr_read_shelf_url(gr), year, month, data.get('noLowRatings', False)
     )
-
-    print(f"\n\n\n\nDEBUG: {books}\n\n\n")
 
     build_html_page(
         books,

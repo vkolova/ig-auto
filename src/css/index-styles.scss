@@ -58,6 +58,12 @@ html, body {
     }
 }
 
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+
 .btn {
     text-transform: uppercase;
     cursor: pointer;

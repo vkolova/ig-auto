@@ -15,6 +15,8 @@ import './css/home.scss';
 
 
 import CurrentlyReading from './CurrentlyReading';
+import SetupAccounts from './SetupAccounts';
+import Protected from './Protected';
 
 const Home = () => <React.Fragment>
     <br /><br /><br />
@@ -28,7 +30,15 @@ const Application = () =>
     <BrowserRouter>
         <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/currently-reading' element={<CurrentlyReading />} />
+            <Route path='/setup-accounts' element={<SetupAccounts />} />
+            <Route
+                path='/currently-reading'
+                element={
+                    <Protected>
+                        <CurrentlyReading />
+                    </Protected>
+                }
+            />
         </Routes>
     </BrowserRouter>;
 
