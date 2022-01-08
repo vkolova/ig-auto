@@ -15,6 +15,7 @@ class Book:
     url: str = None
     cover: str = None
     rating: int = None
+    progress: int = None
     shelves: list = field(default_factory=list)
 
     @classmethod

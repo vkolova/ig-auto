@@ -1,5 +1,18 @@
+.currently-reading-editor {
+    display: grid;
+    grid-gap: 100px;
+    grid-template-columns: auto 60%;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
 .simple-layout {
-    background-color: grey;
+    padding-bottom: 5%;
+
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
 
     display: flex;
     flex-direction: column;
@@ -8,27 +21,27 @@
     position: relative;
 
     .title {
+        margin-bottom: 5%;
         z-index: 2;
     }
 
+    .title.sm { font-size: 20px; }
+    .title.md { font-size: 30px; }
+    .title.lg { font-size: 50px; }
+
     .book-cover {
         aspect-ratio: 100 / 150;
-        background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+        background-position-x: center;
+        background-position-y: center;
+        background-size: cover;
 
         z-index: 1;
     }
 
-    .cover-size-sm {
-        width: 30%;
-    }
-
-    .cover-size-md {
-        width: 50%;
-    }
-
-    .cover-size-lg {
-        width: 70%;
-    }
+    .cover-size-sm { width: 30%; }
+    .cover-size-md { width: 50%; }
+    .cover-size-lg { width: 70%; }
 
     .credit {
         bottom: 20px;
@@ -38,4 +51,47 @@
 
 .simple-layout.reverse {
     flex-direction: column-reverse;
+}
+
+
+// ---------- CONTROLLS ----------
+.section {
+    padding: 25px;
+
+    h4 {
+        text-transform: uppercase;
+        letter-spacing: 7px;
+    }
+
+    .row {
+        padding: 0 25px;
+        display: inline-flex;
+        align-items: center;
+
+        h6 {
+            margin: 0;
+            margin-right: 10px;
+            min-width: 170px;
+            text-transform: uppercase;
+            letter-spacing: 7px;
+        }
+    }
+
+    label {
+        margin: 0 5px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        input[type='radio'] {
+            margin: 0 5px;
+        }
+    }
+}
+
+.cr---settings {
+    h2 {
+        text-transform: uppercase;
+        letter-spacing: 7px;
+    }
 }

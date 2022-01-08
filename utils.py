@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup, SoupStrainer
 from selenium import webdriver
 
-if os.environ.get('HEROKU'):
+if os.environ.get('HEROKU', __name__ == '__main__'):
     from book import Book
 else:
     from .book import Book

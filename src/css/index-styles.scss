@@ -4,21 +4,119 @@
     src: url('./fonts/Sinthya.ttf');
 }
 
-// @font-face {
-//     font-family: 'Catamaran';
-//     src: url('./fonts/Catamaran-Regular.ttf');
-// }
-
 @font-face {
     font-family: 'Catamaran';
-    font-style: normal;
-    font-weight: normal;
-    src: url('./fonts/Catamaran-Regular.ttf') format('ttf');
-  }
+    src: url('./fonts/Catamaran-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Monalisa';
+    src: url('./fonts/Monalisa.ttf');
+}
   
 
 *, :after, :before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+
+$accent-color: #a0656b;
+
+
+html, body {
+    accent-color: $accent-color;
+    font-family: 'Catamaran';
+}
+
+::selection {
+    background-color: rgba(156, 146, 155, 0.5);
+}
+
+$slider-size: 14px;
+
+@mixin slider-props {
+    appearance: none;
+
+    background-color: $accent-color;
+    box-shadow: inset 1px 1px 1px rgba(000, 000, 000, 0.1);
+
+    border-radius: 5px;
+
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+@mixin thumb-props {
+    appearance: none;
+    
+    height: $slider-size;
+    width: $slider-size;
+    margin-top: -($slider-size / 3);
+
+    background-color: $accent-color;
+
+    border-radius: 100%;
+    vertical-align: middle;
+
+    cursor: pointer;
+}
+
+input[type='range'] {
+    appearance: none;
+    width: 300px;
+    border-radius: 3px;
+    transition: opacity 0.2s;
+    padding: 0;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    /* WEBKIT */
+    &::-webkit-slider-runnable-track {
+        @include slider-props;
+        height: 6px;
+        background: #d2d2d2;
+    }
+
+    &::-webkit-slider-thumb {
+        @include thumb-props;
+    }
+
+
+    /* MOZILLA */
+    &::-moz-range-track {
+        @include slider-props;
+        margin: 0;
+        padding: 0;
+    }
+
+    &::-moz-range-thumb {
+        @include thumb-props;
+    }
+}
+
+.btn {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn--submit {
+    max-width: 300px;
+    padding: 10px 15px;
+
+    color: white;
+    background-color: $accent-color;
+
+    letter-spacing: 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

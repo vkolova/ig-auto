@@ -3,18 +3,20 @@ from datetime import timedelta
 
 import flask
 from flask import Flask, session, request
+import requests_cache
 
 app = Flask(__name__)
 app.secret_key = 'malysh'
 app.permanent_session_lifetime = timedelta(minutes=5)
 
-if os.environ.get('HEROKU'):
+if os.environ.get('HEROKU', __name__ == '__main__'):
     from utils import (
         build_html_page,
         parse_monthly_books,
         build_gr_read_shelf_url,
         generate_screenshots
     )
+    from parser import get_current_read
 else:
     app.debug = True
 
@@ -24,6 +26,29 @@ else:
         build_gr_read_shelf_url,
         generate_screenshots
     )
+    from .parser import get_current_read
+
+
+requests_cache.install_cache(cache_name='goodreads-cache', backend='sqlite', expire_after=60*60*6)
+
+
+# ---------- API ----------
+
+@app.route('/api/currently-reading', methods=['get'])
+def api_currently_reading():
+    return flask.jsonify(get_current_read(request.headers.get('goodreads')))
+
+
+@app.route('/api/currently-reading', methods=['post'])
+def api_screenshot_currently_reading():
+    data = request.json
+    print(data)
+    return flask.jsonify(data)
+
+
+
+# -------------------------
+
 
 
 @app.route('/')

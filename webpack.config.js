@@ -6,15 +6,14 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     entry: ['./src/index.jsx'],
     output: {
-        path: path.resolve(__dirname, 'public/dist'),
+        path: path.resolve(__dirname, 'public'),
         filename: 'app.js'
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './public/index.html',
+            template: './templates/webpack-dev.html',
             filename: 'index.html'
         }),
-        new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({
             filename: "styles.css"
         })
@@ -50,10 +49,26 @@ module.exports = {
         extensions: ['.js', '.jsx', '.json']
     },
     devServer: {
+        hot: true,
         static : path.join(__dirname, 'public'),
         compress: false,
         port: 3000,
-        historyApiFallback: true
-    },
-    devtool: 'source-map'
+        historyApiFallback: true,
+        proxy: [
+            {
+                context: ['/api'],
+                target: 'http://localhost:5000',
+                secure: false,
+                changeOrigin: true
+            }
+        ],
+        // writeToDisk: true
+        devMiddleware: {
+            index: true,
+            // mimeTypes: { phtml: 'text/html' },
+            // publicPath: '/publicPathForDevServe',
+            // serverSideRender: true,
+            writeToDisk: true
+        },
+    }
 }
